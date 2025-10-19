@@ -1,0 +1,26 @@
+{
+  "name": "svelte-python-d3fc-dashboard",
+  "version": "1.0.0",
+  "description": "Data visualization dashboard with Python backend, Svelte frontend, MapLibre GL maps, and D3FC charts",
+  "scripts": {
+    "start": "./start.sh",
+    "backend": "cd backend && python main.py",
+    "frontend": "cd frontend && npm run dev",
+    "install-deps": "cd backend && pip install -r requirements.txt && cd ../frontend && npm install"
+  },
+  "keywords": [
+    "svelte",
+    "python",
+    "fastapi",
+    "d3fc",
+    "maplibre-gl",
+    "data-visualization",
+    "dashboard"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rampedro/sevelte-python-d3fc.git"
+  }
+}
