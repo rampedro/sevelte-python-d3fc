@@ -1,0 +1,210 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vizora"
+dynamic = ["version"]
+description = "🚀 Interactive Data Visualization Platform - Create stunning dashboards with Python + Svelte + DeckGL"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Pedro Ramirez", email = "pedro@vizora.dev"}
+]
+maintainers = [
+    {name = "Pedro Ramirez", email = "pedro@vizora.dev"}
+]
+keywords = [
+    "data-visualization", 
+    "dashboard", 
+    "analytics", 
+    "charts",
+    "maps", 
+    "3d-visualization", 
+    "deckgl", 
+    "d3", 
+    "svelte",
+    "fastapi", 
+    "interactive", 
+    "web-app", 
+    "business-intelligence",
+    "data-science", 
+    "geospatial", 
+    "webgl", 
+    "real-time"
+]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Framework :: FastAPI",
+]
+
+requires-python = ">=3.8"
+
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "click>=8.0.0",
+    "rich>=13.0.0",
+    "pydantic>=2.0.0",
+    "PyYAML>=6.0.0",
+    "openpyxl>=3.1.0",
+    "pyarrow>=13.0.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.5.0",
+    "pre-commit>=3.0.0",
+]
+
+docs = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.0.0",
+    "mkdocstrings[python]>=0.23.0",
+]
+
+databases = [
+    "sqlalchemy>=2.0.0",
+    "psycopg2-binary>=2.9.0",
+    "pymysql>=1.1.0",
+]
+
+ml = [
+    "scikit-learn>=1.3.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+]
+
+geo = [
+    "geopandas>=0.14.0",
+    "folium>=0.14.0",
+    "shapely>=2.0.0",
+]
+
+performance = [
+    "polars>=0.19.0",
+    "duckdb>=0.9.0",
+]
+
+all = [
+    "vizora[dev,docs,databases,ml,geo,performance]"
+]
+
+[project.urls]
+Homepage = "https://github.com/rampedro/vizora"
+Documentation = "https://vizora.dev/docs"
+Repository = "https://github.com/rampedro/vizora"
+Issues = "https://github.com/rampedro/vizora/issues"
+Changelog = "https://github.com/rampedro/vizora/blob/main/CHANGELOG.md"
+
+[project.scripts]
+vizora = "vizora.cli.main:cli"
+
+[tool.setuptools]
+packages = ["vizora"]
+
+[tool.setuptools.dynamic]
+version = {attr = "vizora.__version__.__version__"}
+
+[tool.setuptools.package-data]
+vizora = [
+    "templates/**/*",
+    "frontend/**/*", 
+    "data/**/*",
+]
+
+# Development tool configurations
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+  | frontend
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+line_length = 88
+skip_glob = ["frontend/**/*"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+exclude = [
+    "frontend/",
+    "build/",
+    "dist/",
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers --strict-config"
+testpaths = [
+    "tests",
+]
+filterwarnings = [
+    "error",
+    "ignore::UserWarning",
+    "ignore::DeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["vizora"]
+omit = [
+    "*/tests/*",
+    "*/frontend/*",
+    "setup.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]

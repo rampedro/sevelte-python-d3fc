@@ -1,0 +1,31 @@
+# 🚀 Vizora Core Dependencies
+# These are the essential packages needed to run Vizora
+
+# Web Framework & Server
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+
+# Data Processing & Analysis  
+pandas>=2.0.0
+numpy>=1.24.0
+requests
+# Command Line Interface
+click>=8.0.0
+rich>=13.0.0
+
+# Configuration & Validation
+pydantic>=2.0.0
+PyYAML>=6.0.0
+python-dotenv>=1.0.0
+
+# File Format Support
+openpyxl>=3.1.0    # Excel files
+pyarrow>=13.0.0     # Parquet files
+
+# HTTP & Web
+requests>=2.31.0
+aiofiles>=23.0.0
+
+# Utilities
+python-dateutil>=2.8.0
+typing-extensions>=4.7.0
